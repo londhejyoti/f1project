@@ -1,0 +1,51 @@
+{
+	"name": "pl_child_result",
+	"properties": {
+		"activities": [
+			{
+				"name": "look_on_races",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_sink_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_para_file_name": {
+								"value": "@concat('race_')",
+								"type": "Expression"
+							},
+							"ds_para_directory_path": {
+								"value": "@concat('bronze/races/')",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-05-13T05:20:09Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,35 @@
+{
+	"name": "ds_sink_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_sink_formula1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_para_file_name": {
+				"type": "string"
+			},
+			"ds_para_directory_path": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ds_para_file_name",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().ds_para_directory_path",
+					"type": "Expression"
+				},
+				"fileSystem": "formula1"
+			}
+		},
+		"schema": {}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
